@@ -19,7 +19,11 @@
                 <button class="btn" type="submit"> <i class="fas fa-sign-in-alt"></i> Login </button>
             </form>
             <div class="col-12 forgot">
-                <a>Crear cuenta</a>
+                <input type="submit" value="Crear cuenta" (click)="openRegister()" /><br />
+            </div>
+            <div class="cancel">
+                <button type="button" class="btn-danger float-right boton" (click)="cancelLogin()"><i
+                        class="fas fa-window-close"></i> Cancelar</button>
             </div>
         </div>
     </div>

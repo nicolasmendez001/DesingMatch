@@ -79,3 +79,15 @@
 .forgot a{
     color: #c2fbfe;
 }
+
+.cancel{
+    padding: 5px 0 25px;
+}
+
+.forgot input{
+    border: none;
+    background: #3b3b3b;
+    font-weight: bold;
+    color: #fff;
+    cursor: pointer;
+}

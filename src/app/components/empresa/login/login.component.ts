@@ -1,8 +1,9 @@
 import { ModelEmpresa } from './../../../models/ModelEmpresa';
-import { MatDialogRef } from '@angular/material';
+import { MatDialogRef, MatDialog } from '@angular/material';
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from 'src/app/services/login.service';
 import { FormGroup, FormControl, NgForm } from '@angular/forms';
+import { RegisterComponent } from '../register/register.component';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +11,7 @@ import { FormGroup, FormControl, NgForm } from '@angular/forms';
   styleUrls: ['./login.component.css'],
   providers: [LoginService]
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
 
   private empresa: ModelEmpresa;
 
@@ -21,10 +22,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<LoginComponent>,
-    private loginService: LoginService) { }
-
-  ngOnInit() {
-  }
+    private loginService: LoginService,
+    public dialog: MatDialog) { }
 
   /**
    * login
@@ -48,7 +47,11 @@ export class LoginComponent implements OnInit {
       },
       error => this.onIsError()
     );
-    sessionStorage.setItem('mueble', JSON.stringify(this.empresa));
+    sessionStorage.setItem('empresa', JSON.stringify(this.empresa));
+  }
+
+  cancelLogin(){
+    this.dialogRef.close();
   }
 
 
@@ -57,5 +60,13 @@ export class LoginComponent implements OnInit {
     setTimeout(() => {
       this.isError = false;
     }, 4000);
+  }
+
+  openRegister(): void{
+    this.dialogRef.close();
+    const dialogRef = this.dialog.open(RegisterComponent);
+    dialogRef.afterClosed().subscribe(res => {
+      console.log(res);
+    });
   }
 }

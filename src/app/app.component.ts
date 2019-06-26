@@ -1,6 +1,7 @@
 import { LoginComponent } from './components/empresa/login/login.component';
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material';
+import { RegisterComponent } from './components/empresa/register/register.component';
 
 @Component({
   selector: 'app-root',
@@ -14,6 +15,13 @@ export class AppComponent {
 
   openLogin(): void{
     const dialogRef = this.dialog.open(LoginComponent);
+    dialogRef.afterClosed().subscribe(res => {
+      console.log(res);
+    });
+  }
+
+  openRegister(): void{
+    const dialogRef = this.dialog.open(RegisterComponent);
     dialogRef.afterClosed().subscribe(res => {
       console.log(res);
     });
