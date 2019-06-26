@@ -1,4 +1,6 @@
+import { LoginComponent } from './components/empresa/login/login.component';
 import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,17 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'DesingMatch';
+ 
+  constructor(
+    public dialog: MatDialog
+  ){
+
+  }
+
+  openLogin(): void{
+    const dialogRef = this.dialog.open(LoginComponent, {});
+    dialogRef.afterClosed().subscribe(res => {
+      console.log(res);
+    });
+  }
 }
