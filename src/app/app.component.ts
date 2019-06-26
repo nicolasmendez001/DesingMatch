@@ -9,14 +9,11 @@ import { MatDialog } from '@angular/material';
 })
 export class AppComponent {
  
-  constructor(
-    public dialog: MatDialog
-  ){
-
+  constructor(public dialog: MatDialog){
   }
 
   openLogin(): void{
-    const dialogRef = this.dialog.open(LoginComponent, {});
+    const dialogRef = this.dialog.open(LoginComponent);
     dialogRef.afterClosed().subscribe(res => {
       console.log(res);
     });

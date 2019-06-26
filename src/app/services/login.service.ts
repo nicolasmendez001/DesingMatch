@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams} from '@angular/common/http';
 import {ModelEmpresa} from '../models/ModelEmpresa';
 
 @Injectable({
@@ -13,8 +13,10 @@ export class LoginService {
   /**
    * Verficar Usuario
    */
-  public login(user: String, pass: String): Observable<ModelEmpresa> {
-    alert("Entra: " + user + pass)
-    return this.http.post<ModelEmpresa>("url", {user: user, password: pass});
+  public login(user: string, pass: string): Observable<ModelEmpresa> {
+    let params = new HttpParams();
+    params = params.append('user', user);
+    params = params.append('password', pass);
+    return this.http.get<ModelEmpresa>("http://localhost:8080/", {params});
   }
 }

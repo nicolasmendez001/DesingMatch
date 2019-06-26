@@ -4,17 +4,22 @@
             <div class="col-12 user-img">
                 <img src="https://image.flaticon.com/icons/png/512/272/272354.png">
             </div>
-            <form class="col-12">
-                <div class="form-group">
-                     <input type="text" class="form-control" placeholder="Usuario"> 
+            <form class="col-12" #formLogin="ngForm" (ngSubmit)="onLogin(formLogin)">
+                <div class="alert alert-danger" role="alert" *ngIf="isError">
+                    ¡Verifica el usuario y contraseña!
                 </div>
                 <div class="form-group">
-                    <input type="password" class="form-control" placeholder="Contraseña">
+                    <input type="name" id="name" name="name" class="form-control" placeholder="Usuario"
+                        [(ngModel)]="name" required>
                 </div>
-                <button type="submit" class="btn" (click)="login()"> <i class="fas fa-sign-in-alt"></i> Login </button>
+                <div class="form-group">
+                    <input type="password" id="pasword" name="pasword" class="form-control" placeholder="Contraseña"
+                        [(ngModel)]="password" required>
+                </div>
+                <button class="btn" type="submit"> <i class="fas fa-sign-in-alt"></i> Login </button>
             </form>
             <div class="col-12 forgot">
-                <a href="">Crear cuenta</a>
+                <a>Crear cuenta</a>
             </div>
         </div>
     </div>
