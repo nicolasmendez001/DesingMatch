@@ -1,9 +1,9 @@
-import { ModelEmpresa } from './../../../models/ModelEmpresa';
 import { MatDialogRef, MatDialog } from '@angular/material';
-import { Component, OnInit } from '@angular/core';
-import { LoginService } from 'src/app/services/login.service';
+import { Component} from '@angular/core';
+import { LoginService } from 'src/app/services/loginEmpresa/login.service';
 import { FormGroup, FormControl, NgForm } from '@angular/forms';
 import { RegisterComponent } from '../register/register.component';
+import { ModelEmpresa } from 'src/app/models/ModelEmpresa';
 
 @Component({
   selector: 'app-login',

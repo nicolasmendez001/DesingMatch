@@ -1,4 +1,7 @@
-export class ModelEmpresa{
-    id: number;
-    nombre: String;
+export class ModelEmpresa {
+    id?: number;
+    nombre?: String;
+    email?: String;
+    contrasena?: String;
+    url?: String;
 }

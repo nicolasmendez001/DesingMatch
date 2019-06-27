@@ -9,12 +9,14 @@ import {MatDialogModule, MatButtonModule} from "@angular/material";
 import { HttpClientModule } from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 import { RegisterComponent } from './components/empresa/register/register.component';
+import { InicioComponent } from './components/info/inicio/inicio.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    InicioComponent
   ],
   imports: [
     BrowserModule,
