@@ -1,6 +1,8 @@
+import { ModelEmpresa } from './ModelEmpresa';
 export class ModelProyecto{
     id?: number;
-    nombre?: String;
+    nombree?: String;
     descripcion?: String;
     valor?: number;
+    empresa?: ModelEmpresa;
 }

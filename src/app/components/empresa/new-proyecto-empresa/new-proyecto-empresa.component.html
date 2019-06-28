@@ -1,0 +1,39 @@
+<div class="container">
+    <div class="text-center">
+        <h1>Añadir nuevo Proyecto</h1>
+    </div>
+    <form class="col-12" #form="ngForm" (ngSubmit)="onRegister(form)">
+        <div class="alert alert-danger" role="alert" *ngIf="isError">
+            ¡Ingresa todos los datos!
+        </div>
+        <div class="row divcontent">
+            <div class="col-12">
+                <label for="nombre">Nombre</label>
+                <input type="nombre" id="nombre" name="nombre" class="form-control" placeholder="Nombre del proyecto"
+                    required [(ngModel)]="proyecto.nombree">
+                <br>
+            </div>
+            <div class="col-12">
+                <label for="descripcion">Descripción</label>
+                <input type="text" id="descripcion" name="descripcion" class="form-control"
+                    placeholder="Descripción del proyecto" required [(ngModel)]="proyecto.descripcion">
+                <br>
+            </div>
+            <div class="col-12">
+                <label for="valor">Valor</label>
+                <input type="number" id="valor" name="valor" class="form-control" placeholder="Valor del proyecto"
+                    required [(ngModel)]="proyecto.valor">
+                <br>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <button type="button" class="btn btn-danger btn-lg btn-block " (click)="cancel()">Cancelar</button>
+            </div>
+            <div class="col-6">
+                <button type="submit" class="btn btn-primary btn-lg btn-block btnRegister">Guardar</button>
+            </div>
+        </div>
+    </form>
+
+</div>

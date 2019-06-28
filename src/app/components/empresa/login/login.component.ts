@@ -4,6 +4,7 @@ import { LoginService } from 'src/app/services/loginEmpresa/login.service';
 import { FormGroup, FormControl, NgForm } from '@angular/forms';
 import { RegisterComponent } from '../register/register.component';
 import { ModelEmpresa } from 'src/app/models/ModelEmpresa';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,7 @@ export class LoginComponent {
 
   private empresa: ModelEmpresa;
 
-  private name: '';
+  private email: '';
   private password: '';
 
   public isError = false;
@@ -23,7 +24,8 @@ export class LoginComponent {
   constructor(
     public dialogRef: MatDialogRef<LoginComponent>,
     private loginService: LoginService,
-    public dialog: MatDialog) { }
+    public dialog: MatDialog,
+    private router: Router) { }
 
   /**
    * login
@@ -38,16 +40,24 @@ export class LoginComponent {
   }
 
   login() {
-    alert("Entra a verificar");
-    this.loginService.login(this.name, this.password).subscribe(
+    this.loginService.login(this.email, this.password).subscribe(
       res => {
-        this.empresa = res;
-        console.log(this.empresa);
-
+        this.empresaLogueada(res);
       },
       error => this.onIsError()
     );
-    sessionStorage.setItem('empresa', JSON.stringify(this.empresa));
+  }
+
+  private empresaLogueada(empresa: ModelEmpresa) {
+   if (empresa != null) {
+    window.localStorage.setItem('empresa', JSON.stringify(empresa));
+    this.dialogRef.close();  
+    this.router.navigate(['/']);
+    location.reload();
+   }else{
+     this.onIsError();
+   }
+   
   }
 
   cancelLogin(){

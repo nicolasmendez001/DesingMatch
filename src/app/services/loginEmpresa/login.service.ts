@@ -13,10 +13,7 @@ export class LoginService {
   /**
    * Verficar Usuario
    */
-  public login(user: string, pass: string): Observable<ModelEmpresa> {
-    let params = new HttpParams();
-    params = params.append('user', user);
-    params = params.append('password', pass);
-    return this.http.get<ModelEmpresa>("http://localhost:8080/", {params});
+  public login(email: string, password: string): Observable<ModelEmpresa> {
+    return this.http.get<ModelEmpresa>(`http://localhost:17129/backDesingMatch/web/empresa/login/${email}/${password}`);
   }
 }

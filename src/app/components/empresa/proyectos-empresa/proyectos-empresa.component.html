@@ -1,0 +1,50 @@
+<div class="container principal">
+    <div class="panel panel-primary">
+
+        <div class="panel-body">
+            <div class="btn-group">
+                <button type="button" class="btn btn-outline-primary font-weight-bold ml-2 mb-2"
+                    (click)="newProject()">Nuevo proyecto</button>
+            </div>
+            <div class="panel-heading font-weight-bold ml-2 mb-2">Lista de proyectos</div>
+            <table class="resultados table table-striped">
+                <tr>
+                    <th>
+                        N°
+                    </th>
+                    <th>
+                        Nombre
+                    </th>
+                    <th>
+                        Descripción
+                    </th>
+                    <th>
+                        Valor
+                    </th>
+                    <th>
+                        Opciones
+                    </th>
+                </tr>
+                <tr *ngFor="let item of projects; let indice=index">
+                    <td>{{indice+1}}</td>
+                    <td>{{item.nombree}}</td>
+                    <td>{{item.descripcion}}</td>
+                    <td>{{item.valor}}</td>
+                    <td class="row">
+                        <button type="button" class="btn btn-outline-primary mr-2" (click)="abrir(item)">
+                            <span class="glyphicon glyphicon-remove"></span>Abrir
+                        </button>
+                        <button type="button" class="btn btn-outline-primary mr-2" (click)="editar(item)">
+                            <span class="glyphicon glyphicon-pencil"></span>Editar
+                        </button>
+                        <button type="button" class="btn btn-outline-primary" (click)="eliminar(item.idProyecto)">
+                            <span class="glyphicon glyphicon-remove"></span>Eliminar
+                        </button>
+                    </td>
+                </tr>
+            </table>
+            <div dir-pagination-controls></div>
+            <br />
+        </div>
+    </div>
+</div>

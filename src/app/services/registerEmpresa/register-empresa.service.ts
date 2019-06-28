@@ -14,6 +14,6 @@ export class RegisterEmpresaService {
    * saveEmpresa
    */
   public saveEmpresa(empresa: ModelEmpresa): Observable<ModelEmpresa> {
-    return this.http.post<ModelEmpresa>("http://url:port/webResourse/Empresa/registrarEmpresa", empresa);
+    return this.http.post<ModelEmpresa>("http://localhost:17129/backDesingMatch/web/empresa/registrarEmpresa", empresa);
   }
 }

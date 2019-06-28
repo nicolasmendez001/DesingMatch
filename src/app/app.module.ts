@@ -10,13 +10,17 @@ import { HttpClientModule } from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 import { RegisterComponent } from './components/empresa/register/register.component';
 import { InicioComponent } from './components/info/inicio/inicio.component';
+import { ProyectosEmpresaComponent } from './components/empresa/proyectos-empresa/proyectos-empresa.component';
+import { NewProyectoEmpresaComponent } from './components/empresa/new-proyecto-empresa/new-proyecto-empresa.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    InicioComponent
+    InicioComponent,
+    ProyectosEmpresaComponent,
+    NewProyectoEmpresaComponent,
   ],
   imports: [
     BrowserModule,
@@ -27,7 +31,7 @@ import { InicioComponent } from './components/info/inicio/inicio.component';
     HttpClientModule,
     FormsModule
   ],
-  entryComponents: [LoginComponent, RegisterComponent],
+  entryComponents: [LoginComponent, RegisterComponent, NewProyectoEmpresaComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

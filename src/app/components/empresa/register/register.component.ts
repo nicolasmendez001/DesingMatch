@@ -4,6 +4,7 @@ import { MatDialog, MatDialogRef } from '@angular/material';
 import { LoginComponent } from '../login/login.component';
 import { NgForm } from '@angular/forms';
 import { RegisterEmpresaService } from 'src/app/services/registerEmpresa/register-empresa.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -19,7 +20,8 @@ export class RegisterComponent {
 
   constructor(public dialog: MatDialog,
     public dialogRef: MatDialogRef<RegisterComponent>,
-    private server: RegisterEmpresaService) {
+    private server: RegisterEmpresaService,
+    private router: Router) {
     this.empresa = new ModelEmpresa();
   }
 
@@ -33,9 +35,9 @@ export class RegisterComponent {
 
   onRegister(form: NgForm) {
     if (form.valid) {
-      alert("pass: " + this.empresa.contrasena + "   -  " + this.confirmPass);
       if (this.empresa.contrasena != this.confirmPass) {
         this.errorPassword();
+      } else {
         this.saveEmpresa();
       }
     } else {
@@ -44,13 +46,27 @@ export class RegisterComponent {
   }
 
   private saveEmpresa() {
+    this.empresa.url = this.empresa.nombre + this.generateNumber();
     this.server.saveEmpresa(this.empresa).subscribe(
       // En corchetes guardar la sesion
-      res => {},
+      res => { this.empresaGuardada(res)},
       error => {
-
+        alert("Error al guardar: " + error);
       }
     );
+  }
+
+  private empresaGuardada(empresa: ModelEmpresa) {
+    console.log(empresa);
+    window.localStorage.setItem('empresa', JSON.stringify(empresa));
+    alert("Empresa Guardada.");
+    this.dialogRef.close();
+    this.router.navigate(['/']);
+    location.reload();
+  }
+
+  private generateNumber() {
+    return Math.round(Math.random() * 100) + "";
   }
 
   errorPassword(): void {
