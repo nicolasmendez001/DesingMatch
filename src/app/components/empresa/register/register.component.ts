@@ -1,10 +1,8 @@
 import { ModelEmpresa } from './../../../models/ModelEmpresa';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material';
-import { LoginComponent } from '../login/login.component';
 import { NgForm } from '@angular/forms';
-import { RegisterEmpresaService } from 'src/app/services/registerEmpresa/register-empresa.service';
-import { Router } from '@angular/router';
+import { RegisterEmpresaService } from 'src/app/services/register/register-empresa.service';
 
 @Component({
   selector: 'app-register',
@@ -15,22 +13,14 @@ export class RegisterComponent {
 
   public isError = false;
   public errorPass = false;
-  private empresa: ModelEmpresa;
   private confirmPass: String;
+  private empresa: ModelEmpresa;
 
   constructor(public dialog: MatDialog,
     public dialogRef: MatDialogRef<RegisterComponent>,
-    private server: RegisterEmpresaService,
-    private router: Router) {
+   private server: RegisterEmpresaService,
+   ) {
     this.empresa = new ModelEmpresa();
-  }
-
-  openLogin(): void {
-    this.dialogRef.close();
-    const dialogRef = this.dialog.open(LoginComponent);
-    dialogRef.afterClosed().subscribe(res => {
-      console.log(res);
-    });
   }
 
   onRegister(form: NgForm) {
@@ -46,23 +36,24 @@ export class RegisterComponent {
   }
 
   private saveEmpresa() {
-    this.empresa.url = this.empresa.nombre + this.generateNumber();
+    this.empresa.url = this.nameEmpresa(this.empresa.nombre) + this.generateNumber();
+    alert(this.empresa.url);
     this.server.saveEmpresa(this.empresa).subscribe(
       // En corchetes guardar la sesion
       res => { this.empresaGuardada(res)},
       error => {
-        alert("Error al guardar: " + error);
+        alert("Error al guardar: ");
       }
     );
   }
 
+  private nameEmpresa(name: String): String{
+    return name.replace(/ /g, "");
+  }
+
   private empresaGuardada(empresa: ModelEmpresa) {
-    console.log(empresa);
-    window.localStorage.setItem('empresa', JSON.stringify(empresa));
     alert("Empresa Guardada.");
     this.dialogRef.close();
-    this.router.navigate(['/']);
-    location.reload();
   }
 
   private generateNumber() {

@@ -1,4 +1,6 @@
+import { MatDialog } from '@angular/material';
 import { Component, OnInit } from '@angular/core';
+import { RegisterComponent } from '../empresa/register/register.component';
 
 @Component({
   selector: 'app-inicio',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InicioComponent implements OnInit {
 
-  constructor() { }
+  constructor(private dialog: MatDialog) { }
 
   ngOnInit() {
   }
 
+  openRegister(){
+    this.dialog.open(RegisterComponent);
+  }
 }

@@ -1,8 +1,6 @@
-import { LoginComponent } from './components/empresa/login/login.component';
 import { Component } from '@angular/core';
-import { MatDialog } from '@angular/material';
 import { RegisterComponent } from './components/empresa/register/register.component';
-import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-root',
@@ -10,42 +8,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  title = 'DesingMatch';
 
-  public name : String;
- 
-  constructor(public dialog: MatDialog, private router: Router){
-    var empresa = JSON.parse(window.localStorage.getItem('empresa'));
-    if (empresa != null) {
-      this.name = empresa.nombre;
-    }else{
-      this.name = "";
-    }
-  }
+  constructor(public dialog: MatDialog) { }
 
-  openLogin(): void{
-    const dialogRef = this.dialog.open(LoginComponent);
-    dialogRef.afterClosed().subscribe(res => {
-      console.log(res);
-    });
-  }
-
-  openRegister(): void{
-    const dialogRef = this.dialog.open(RegisterComponent);
-    dialogRef.afterClosed().subscribe(res => {
-      console.log(res);
-    });
-  }
-
-  validar(): boolean{
-    var empresa = JSON.parse(window.localStorage.getItem('empresa'));
-    //console.log(empresa.nombre);
-    
-    return empresa == null;
-  }
-
-  salir(){
-    window.localStorage.removeItem('empresa');
-    this.router.navigate(['/']);
-    
+  openRegister(): void {
+    this.dialog.open(RegisterComponent);
   }
 }

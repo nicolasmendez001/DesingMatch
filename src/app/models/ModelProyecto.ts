@@ -1,4 +1,5 @@
 import { ModelEmpresa } from './ModelEmpresa';
+
 export class ModelProyecto{
     id?: number;
     nombree?: String;

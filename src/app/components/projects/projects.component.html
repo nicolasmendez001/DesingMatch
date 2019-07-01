@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <section>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+            <a class="navbar-brand" href="#">{{nombre}}</a>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                </ul>
+                <div class="form-inline my-2 my-lg-0" *ngIf="!isLogin()">
+                    <button class="btn btn-outline-primary my-1 my-sm-1" type="submit" (click)="login()">Login</button>
+                </div>
+                <div class="form-inline my-2 my-lg-0" *ngIf="isLogin()">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            {{empresa.nombre}}: Opciones
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li class="">
+                                <button type="button" class="btn btn-light" (click)="editarInfo()">
+                                    <span class="glyphicon glyphicon-remove"></span>Editar mi información
+                                </button>
+                            </li>
+                            <div class="dropdown-divider"></div>
+                            <button type="button" class="btn btn-light" (click)="salir()">
+                                <span class="glyphicon glyphicon-remove"></span>Cerrar sesión
+                            </button>
+                        </div>
+                    </li>
+                </div>
+            </div>
+        </nav>
+    </section>
+    <section>
+        <div class="container principal">
+            <div class="panel panel-primary">
+
+                <div class="panel-body">
+                    <div class="btn-group" *ngIf="isLogin()">
+                        <button type="button" class="btn btn-outline-primary font-weight-bold ml-2 mb-2"
+                            (click)="newProject()">Nuevo proyecto</button>
+                    </div>
+                    <div class="panel-heading font-weight-bold ml-2 mb-2">Lista de proyectos</div>
+                    <table class="resultados table table-striped">
+                        <tr>
+                            <th>
+                                N°
+                            </th>
+                            <th>
+                                Nombre
+                            </th>
+                            <th>
+                                Descripción
+                            </th>
+                            <th>
+                                Valor
+                            </th>
+                            <th>
+                                Opciones
+                            </th>
+                        </tr>
+                        <tr *ngFor="let item of projects; let indice=index">
+                            <td>{{indice+1}}</td>
+                            <td>{{item.nombree}}</td>
+                            <td>{{item.descripcion}}</td>
+                            <td>{{item.valor}}</td>
+                            <td class="row" *ngIf="isLogin()">
+                                <button type="button" class="btn btn-outline-primary mr-2" (click)="editar(item)">
+                                    <span class="glyphicon glyphicon-pencil"></span>Editar
+                                </button>
+                                <button type="button" class="btn btn-outline-primary"
+                                    (click)="eliminar(item.idProyecto)">
+                                    <span class="glyphicon glyphicon-remove"></span>Eliminar
+                                </button>
+                            </td>
+                            <td class="row" *ngIf="!isLogin()">
+                                <button type="button" class="btn btn-outline-primary mr-2">
+                                    <span class="glyphicon glyphicon-pencil"></span>Ver más
+                                </button>
+                            </td>
+                        </tr>
+                    </table>
+                    <div dir-pagination-controls></div>
+                    <br />
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+
+</html>

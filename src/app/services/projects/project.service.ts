@@ -1,18 +1,18 @@
-import { ModelProyecto } from './../../models/ModelProyecto';
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { ModelProyecto } from '../../models/ModelProyecto';
 import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ProyectsEmpresaService {
-  
+export class ProjectService {
+
+  constructor(private http: HttpClient) { }
+
   public delete(id: number): Observable<ModelProyecto> {
     return this.http.delete(`http://localhost:17129/backDesingMatch/web/Proyectos/${id}`);
   }
-
-  constructor(private http: HttpClient) { }
 
   public loadProjects(url: string): Observable<ModelProyecto[]> {
     return this.http.get<ModelProyecto[]>(`http://localhost:17129/backDesingMatch/web/Proyectos/${url}`);

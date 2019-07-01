@@ -1,14 +1,15 @@
 <div class="container">
     <div class="text-center">
-        <h1>Añadir nuevo Proyecto</h1>
+        <h1 *ngIf="!existProject">Añadir nuevo Proyecto</h1>
+        <h1 *ngIf="existProject">Editar proyecto Proyecto</h1>
     </div>
-    <form class="col-12" #form="ngForm" (ngSubmit)="onRegister(form)">
+    <form class="col-12 main-form" #form="ngForm" (ngSubmit)="onRegister(form)">
         <div class="alert alert-danger" role="alert" *ngIf="isError">
             ¡Ingresa todos los datos!
         </div>
         <div class="row divcontent">
-            <div class="col-12">
-                <label for="nombre">Nombre</label>
+            <div class="col-12 form-group">
+                <label for="">Nombre</label>
                 <input type="nombre" id="nombre" name="nombre" class="form-control" placeholder="Nombre del proyecto"
                     required [(ngModel)]="proyecto.nombree">
                 <br>

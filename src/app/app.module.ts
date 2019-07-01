@@ -1,38 +1,47 @@
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDialogModule } from '@angular/material';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './components/empresa/login/login.component';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatDialogModule, MatButtonModule} from "@angular/material";
-import { HttpClientModule } from '@angular/common/http';
-import {FormsModule} from '@angular/forms';
 import { RegisterComponent } from './components/empresa/register/register.component';
-import { InicioComponent } from './components/info/inicio/inicio.component';
-import { ProyectosEmpresaComponent } from './components/empresa/proyectos-empresa/proyectos-empresa.component';
-import { NewProyectoEmpresaComponent } from './components/empresa/new-proyecto-empresa/new-proyecto-empresa.component';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { ProjectsComponent } from './components/projects/projects.component';
+import { RouterModule, Routes } from '@angular/router';
+import { APP_BASE_HREF } from '@angular/common';
+import { InicioComponent } from './components/inicio/inicio.component';
+import { NewProjectComponent } from './components/new-project/new-project.component';
+import { LoginComponent } from './components/empresa/login/login.component';
+
+const routes: Routes = [
+  { path: '', component: InicioComponent },
+  { path: ':project', component: ProjectsComponent }
+];
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
     RegisterComponent,
+    ProjectsComponent,
     InicioComponent,
-    ProyectosEmpresaComponent,
-    NewProyectoEmpresaComponent,
+    NewProjectComponent,
+    LoginComponent
   ],
   imports: [
+    RouterModule.forRoot(routes),
     BrowserModule,
-    AppRoutingModule,
     MatDialogModule,
     BrowserAnimationsModule,
-    MatButtonModule,
+    FormsModule,
     HttpClientModule,
-    FormsModule
+    RouterModule,
   ],
-  entryComponents: [LoginComponent, RegisterComponent, NewProyectoEmpresaComponent],
-  providers: [],
-  bootstrap: [AppComponent]
+  entryComponents: [RegisterComponent, LoginComponent, NewProjectComponent],
+  providers: [{ provide: APP_BASE_HREF, useValue: '' }],
+  bootstrap: [AppComponent],
+  exports: [
+    RouterModule
+  ],
 })
 export class AppModule { }
