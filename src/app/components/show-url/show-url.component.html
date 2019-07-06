@@ -1,0 +1,18 @@
+<div class="container text-light">
+    <div class="row">
+        <h1>Su empresa ha sido registrada con exito!</h1>
+    </div>
+    <div class="row">
+        <div class="col-10 align-self-center">
+            <h4>Su link generado es:</h4>
+        </div>
+        <div class="col-2">
+            <button class="btn btn-outline-success my-1 my-sm-1" type="submit"
+            [routerLink]="['/', url]" (click) = "close()" routerLinkActive="router-link-active" >Ingresar</button>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <h2>{{path}}</h2>
+    </div>
+</div>

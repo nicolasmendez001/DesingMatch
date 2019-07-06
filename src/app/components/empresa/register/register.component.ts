@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material';
 import { NgForm } from '@angular/forms';
 import { RegisterEmpresaService } from 'src/app/services/register/register-empresa.service';
+import { ShowUrlComponent } from '../../show-url/show-url.component';
 
 @Component({
   selector: 'app-register',
@@ -37,7 +38,6 @@ export class RegisterComponent {
 
   private saveEmpresa() {
     this.empresa.url = this.nameEmpresa(this.empresa.nombre) + this.generateNumber();
-    alert(this.empresa.url);
     this.server.saveEmpresa(this.empresa).subscribe(
       // En corchetes guardar la sesion
       res => { this.empresaGuardada(res)},
@@ -52,8 +52,8 @@ export class RegisterComponent {
   }
 
   private empresaGuardada(empresa: ModelEmpresa) {
-    alert("Empresa Guardada.");
     this.dialogRef.close();
+    this.dialog.open(ShowUrlComponent, {data:empresa.url});
   }
 
   private generateNumber() {

@@ -14,6 +14,7 @@ import { InicioComponent } from './components/inicio/inicio.component';
 import { NewProjectComponent } from './components/new-project/new-project.component';
 import { LoginComponent } from './components/empresa/login/login.component';
 import { DiseniosComponent } from './components/disenios/disenios.component';
+import { ShowUrlComponent } from './components/show-url/show-url.component';
 
 const routes: Routes = [
   { path: '', component: InicioComponent },
@@ -28,7 +29,8 @@ const routes: Routes = [
     InicioComponent,
     NewProjectComponent,
     LoginComponent,
-    DiseniosComponent
+    DiseniosComponent,
+    ShowUrlComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
@@ -39,7 +41,7 @@ const routes: Routes = [
     HttpClientModule,
     RouterModule,
   ],
-  entryComponents: [RegisterComponent, LoginComponent, NewProjectComponent, DiseniosComponent],
+  entryComponents: [RegisterComponent, LoginComponent, NewProjectComponent, DiseniosComponent, ShowUrlComponent],
   providers: [{ provide: APP_BASE_HREF, useValue: '' }],
   bootstrap: [AppComponent],
   exports: [
