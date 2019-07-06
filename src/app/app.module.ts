@@ -13,6 +13,7 @@ import { APP_BASE_HREF } from '@angular/common';
 import { InicioComponent } from './components/inicio/inicio.component';
 import { NewProjectComponent } from './components/new-project/new-project.component';
 import { LoginComponent } from './components/empresa/login/login.component';
+import { DiseniosComponent } from './components/disenios/disenios.component';
 
 const routes: Routes = [
   { path: '', component: InicioComponent },
@@ -26,7 +27,8 @@ const routes: Routes = [
     ProjectsComponent,
     InicioComponent,
     NewProjectComponent,
-    LoginComponent
+    LoginComponent,
+    DiseniosComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
@@ -37,7 +39,7 @@ const routes: Routes = [
     HttpClientModule,
     RouterModule,
   ],
-  entryComponents: [RegisterComponent, LoginComponent, NewProjectComponent],
+  entryComponents: [RegisterComponent, LoginComponent, NewProjectComponent, DiseniosComponent],
   providers: [{ provide: APP_BASE_HREF, useValue: '' }],
   bootstrap: [AppComponent],
   exports: [

@@ -10,15 +10,15 @@ export class ProjectService {
 
   constructor(private http: HttpClient) { }
 
-  public delete(id: number): Observable<ModelProyecto> {
-    return this.http.delete(`http://localhost:17129/backDesingMatch/web/Proyectos/${id}`);
+  public delete(idEmpresa: number, idProyecto: number): Observable<ModelProyecto> {
+    return this.http.delete(`http://localhost:17129/backDesingMatch/web/Proyectos/${idEmpresa}/${idProyecto}`);
   }
 
   public loadProjects(url: string): Observable<ModelProyecto[]> {
     return this.http.get<ModelProyecto[]>(`http://localhost:17129/backDesingMatch/web/Proyectos/${url}`);
   }
 
-  public saveProject(project: ModelProyecto) {
-    return this.http.post<ModelProyecto>(`http://localhost:17129/backDesingMatch/web/Proyectos/registrarProyecto`, project);
+  public saveProject(project: ModelProyecto, id:number) {
+    return this.http.post<ModelProyecto>(`http://localhost:17129/backDesingMatch/web/Proyectos/registrarProyecto/${id}`, project);
   }
 }

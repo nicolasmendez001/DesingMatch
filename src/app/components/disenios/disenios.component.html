@@ -1,0 +1,51 @@
+<div class="panel panel-primary">
+
+    <div class="panel-body">
+        <div class="panel-heading font-weight-bold ml-2 mb-2">Lista de diseños</div>
+        <table class="resultados table table-striped">
+            <tr>
+                <th>
+                    #
+                </th>
+                <th>
+                    Fecha
+                </th>
+                <th>
+                    Email
+                </th>
+                <th>
+                    Nombres
+                </th>
+                <th>
+                    Apellidos
+                </th>
+                <th>
+                    Estado
+                </th>
+                <th>
+                    Valor
+                </th>
+                <th>
+                    Opciones
+                </th>
+                <th>
+                </th>
+            </tr>
+            <tr dir-paginate="row in disenios|filter: q|itemsPerPage:10">
+                <td>{{row.numero}}</td>
+                <td>{{row.fecha}}</td>
+                <td>{{row.email}}</td>
+                <td>{{row.nombres}}</td>
+                <td>{{row.nombreApellidos}}</td>
+                <td>{{row.estado}}</td>
+                <td>{{row.valor}}</td>
+                <td class="row">
+                    <button type="button" class="btn btn-outline-primary mr-2" ng-click="abrir(row)">
+                        <span class="glyphicon glyphicon-remove"></span>Abrir
+                    </button>
+                </td>
+            </tr>
+        </table>
+        <div dir-pagination-controls></div>
+        <br />
+    </div>

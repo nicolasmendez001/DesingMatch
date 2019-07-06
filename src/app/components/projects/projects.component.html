@@ -25,18 +25,19 @@
                             {{empresa.nombre}}: Opciones
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li class="">
-                                <button type="button" class="btn btn-light" (click)="editarInfo()">
-                                    <span class="glyphicon glyphicon-remove"></span>Editar mi información
-                                </button>
-                            </li>
-                            <div class="dropdown-divider"></div>
-                            <button type="button" class="btn btn-light" (click)="salir()">
-                                <span class="glyphicon glyphicon-remove"></span>Cerrar sesión
-                            </button>
-                        </div>
+                    <li class="">
+                        <button type="button" class="btn btn-light" (click)="editarInfo()">
+                            <span class="glyphicon glyphicon-remove"></span>Editar mi información
+                        </button>
+                        <button type="button" class="btn btn-light" (click)="salir()">
+                            <span class="glyphicon glyphicon-remove"></span>Cerrar sesión
+                        </button>
                     </li>
+                   
+
                 </div>
+                </li>
+            </div>
             </div>
         </nav>
     </section>
@@ -77,14 +78,18 @@
                                 <button type="button" class="btn btn-outline-primary mr-2" (click)="editar(item)">
                                     <span class="glyphicon glyphicon-pencil"></span>Editar
                                 </button>
-                                <button type="button" class="btn btn-outline-primary"
+                                <button type="button" class="btn btn-outline-primary mr-2"
                                     (click)="eliminar(item.idProyecto)">
                                     <span class="glyphicon glyphicon-remove"></span>Eliminar
+                                </button>
+                                <button type="button" class="btn btn-outline-primary mr-2"
+                                (click)="diseniosLogin(item)">
+                                    <span class="glyphicon glyphicon-remove"></span>Diseños
                                 </button>
                             </td>
                             <td class="row" *ngIf="!isLogin()">
                                 <button type="button" class="btn btn-outline-primary mr-2">
-                                    <span class="glyphicon glyphicon-pencil"></span>Ver más
+                                    <span class="glyphicon glyphicon-pencil"></span>Ver Diseños
                                 </button>
                             </td>
                         </tr>
@@ -95,7 +100,6 @@
             </div>
         </div>
     </section>
-
 </body>
 
 </html>

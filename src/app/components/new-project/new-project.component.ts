@@ -36,8 +36,7 @@ export class NewProjectComponent {
 
   addProject() {
     var empresa: ModelEmpresa = JSON.parse(window.localStorage.getItem('empresa'));
-    this.proyecto.empresa = empresa;
-    this.service.saveProject(this.proyecto).subscribe(
+    this.service.saveProject(this.proyecto, empresa.id).subscribe(
       res => { this.isSaved() },
       error => {
         alert("Error al guardar: " + error);

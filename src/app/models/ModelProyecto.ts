@@ -1,9 +1,9 @@
-import { ModelEmpresa } from './ModelEmpresa';
+import { ModelDisenios } from './ModelDisenios';
 
 export class ModelProyecto{
     id?: number;
     nombree?: String;
     descripcion?: String;
     valor?: number;
-    empresa?: ModelEmpresa;
+    disenios?: Array<ModelDisenios>;
 }

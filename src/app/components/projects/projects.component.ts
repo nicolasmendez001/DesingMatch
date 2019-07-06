@@ -6,6 +6,7 @@ import { ModelProyecto } from 'src/app/models/ModelProyecto';
 import { MatDialog } from '@angular/material';
 import { LoginComponent } from '../empresa/login/login.component';
 import { ModelEmpresa } from 'src/app/models/ModelEmpresa';
+import { DiseniosComponent } from '../disenios/disenios.component';
 
 @Component({
   selector: 'app-projects',
@@ -49,8 +50,13 @@ export class ProjectsComponent implements OnInit {
     });
   }
 
-  abrir(proyecto: ModelProyecto) {
-
+  diseniosLogin(proyecto: ModelProyecto) {
+    console.log(proyecto.disenios);
+    
+    const dialogRef = this.dialog.open(DiseniosComponent, { data: { proyecto } });
+    dialogRef.afterClosed().subscribe(res => {
+      console.log(res);
+    });
   }
 
   editar(proyecto: ModelProyecto) {
@@ -61,7 +67,8 @@ export class ProjectsComponent implements OnInit {
   }
 
   eliminar(id: number) {
-    this.service.delete(id).subscribe(
+
+    this.service.delete(this.empresa.id, id).subscribe(
       res => {
         location.reload();
       },
@@ -74,11 +81,11 @@ export class ProjectsComponent implements OnInit {
     return this.empresa != null;
   }
 
-  editarInfo(){
+  editarInfo() {
     alert("Sirve editar");
   }
 
-  salir(){
+  salir() {
     window.localStorage.clear();
   }
 }
