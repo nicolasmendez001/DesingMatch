@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ProjectService {
-
+  
   constructor(private http: HttpClient) { }
 
   public delete(idEmpresa: number, idProyecto: number): Observable<ModelProyecto> {
@@ -20,5 +20,9 @@ export class ProjectService {
 
   public saveProject(project: ModelProyecto, id:number) {
     return this.http.post<ModelProyecto>(`http://localhost:17129/backDesingMatch/web/Proyectos/registrarProyecto/${id}`, project);
+  }
+
+  editProject(proyecto: ModelProyecto) {
+    return this.http.put<ModelProyecto>(`http://localhost:17129/backDesingMatch/web/Proyectos/editarProyecto`, proyecto);
   }
 }

@@ -1,7 +1,7 @@
 import { ProjectService } from './../../services/projects/project.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { ModelProyecto } from 'src/app/models/ModelProyecto';
-import { MatDialogRef } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { NgForm } from '@angular/forms';
 import { ModelEmpresa } from 'src/app/models/ModelEmpresa';
 
@@ -14,9 +14,17 @@ export class NewProjectComponent {
 
   public proyecto: ModelProyecto;
   public isError = false;
+  public existProject = false;
 
-  constructor(public dialogRef: MatDialogRef<NewProjectComponent>, private service: ProjectService) {
-    this.proyecto = new ModelProyecto();
+  constructor(public dialogRef: MatDialogRef<NewProjectComponent>, private service: ProjectService,  @Inject(MAT_DIALOG_DATA) proyecto) {
+    if (proyecto != null) {
+      this.existProject = true;
+      this.proyecto = proyecto;
+    }else{
+      this.proyecto = new ModelProyecto();
+    }
+    console.log(this.proyecto);
+    
    }
 
    onRegister(form: NgForm) {
@@ -36,7 +44,24 @@ export class NewProjectComponent {
 
   addProject() {
     var empresa: ModelEmpresa = JSON.parse(window.localStorage.getItem('empresa'));
-    this.service.saveProject(this.proyecto, empresa.id).subscribe(
+    if (this.existProject) {
+      this.editProject();
+    }else{
+      this.saveProject(empresa.id);
+    }
+  }
+
+  private editProject() {
+    this.service.editProject(this.proyecto).subscribe(
+      res => { this.isSaved() },
+      error => {
+        alert("Error al editar: " + error);
+      }
+    );
+  }
+
+  private saveProject(id: number){
+    this.service.saveProject(this.proyecto, id).subscribe(
       res => { this.isSaved() },
       error => {
         alert("Error al guardar: " + error);

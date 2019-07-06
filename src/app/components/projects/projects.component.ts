@@ -52,7 +52,7 @@ export class ProjectsComponent implements OnInit {
 
   diseniosLogin(proyecto: ModelProyecto) {
     console.log(proyecto.disenios);
-    
+
     const dialogRef = this.dialog.open(DiseniosComponent, { data: { proyecto } });
     dialogRef.afterClosed().subscribe(res => {
       console.log(res);
@@ -60,7 +60,7 @@ export class ProjectsComponent implements OnInit {
   }
 
   editar(proyecto: ModelProyecto) {
-    const dialogRef = this.dialog.open(NewProjectComponent, { data: { proyecto } });
+    const dialogRef = this.dialog.open(NewProjectComponent, { data: proyecto });
     dialogRef.afterClosed().subscribe(res => {
       console.log(res);
     });

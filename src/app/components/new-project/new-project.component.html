@@ -1,7 +1,7 @@
 <div class="container">
     <div class="text-center">
         <h1 *ngIf="!existProject">Añadir nuevo Proyecto</h1>
-        <h1 *ngIf="existProject">Editar proyecto Proyecto</h1>
+        <h1 *ngIf="existProject">Editar Proyecto {{proyecto.nombree}}</h1>
     </div>
     <form class="col-12 main-form" #form="ngForm" (ngSubmit)="onRegister(form)">
         <div class="alert alert-danger" role="alert" *ngIf="isError">
