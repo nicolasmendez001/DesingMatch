@@ -1,8 +1,9 @@
 import { DiseniosService } from './../../services/disenios/disenios.service';
 import { ModelDisenios } from 'src/app/models/ModelDisenios';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { error } from '@angular/compiler/src/util';
+import { MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
   selector: 'app-add-disenio',
@@ -18,9 +19,9 @@ export class AddDisenioComponent implements OnInit {
   private idProyecto: number;
   private img: any;
 
-  constructor(private service: DiseniosService) {
+  constructor(private service: DiseniosService, @Inject(MAT_DIALOG_DATA) id) {
     this.disenio = new ModelDisenios();
-    this.idProyecto = 3;
+    this.idProyecto = id;
   }
 
   ngOnInit() {
@@ -59,14 +60,16 @@ export class AddDisenioComponent implements OnInit {
     
 
     this.service.saveDisenio(this.disenio, this.idProyecto).subscribe(
-      res => { this.isSaved(res)
+      res => { this.isSaved(res), console.log("Reponde ->", res);
+      
       },
       error => {
         alert("Error al guardar");
       });
   }
 
-  private isSaved(disenio: ModelDisenios) {
+  private isSaved(disenio) {
+    this.disenio = disenio;
     console.log(disenio);
     
     alert("Hemos recibido tu diseño y lo estamos procesando para que sea publicado");
@@ -79,13 +82,18 @@ export class AddDisenioComponent implements OnInit {
     
     this.service.senImg(this.imgBase64, name).subscribe(
       res => { this.changePath(res) },
+      
+      
       error => {
         alert("Error al enviar img");
       });
   }
 
   changePath(res){
+    console.log("Esto llega a editar ", res);
     this.disenio.rutaImagen = res[0];
+    console.log("Diseño editado -> ", this.disenio);
+    
 
     this.service.UpdateDisenio(this.disenio).subscribe(
       res => {
