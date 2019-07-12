@@ -45,7 +45,7 @@
 }
 
 .form-group:last-of-type::before{
-    content: "\f023";
+    content: "\f084";
 }
 
 .button{

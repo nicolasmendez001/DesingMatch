@@ -73,5 +73,4 @@ export class RegisterComponent {
       this.isError = false;
     }, 2000);
   }
-
 }

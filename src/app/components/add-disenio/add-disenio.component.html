@@ -1,0 +1,41 @@
+<div class="container addDisenio text-center">
+    <h2>Añadir diseño</h2>
+    <div class="row">
+        <div class="imagen" style="padding-bottom: 20px">
+            <img class="mx-auto rounded-circle" id="image"
+                src="https://www.freeiconspng.com/uploads/add-icon--icon-search-engine-1.png" alt="">
+            <!--<button class="btn btn-transparent" type="button" (click)="selectImg()">
+                </button>-->
+        </div>
+        <form class="col-12 text-center" #form="ngForm" (ngSubmit)="onRegister(form)">
+            <div class="alert alert-danger" role="alert" *ngIf="isError">
+                ¡Ingresa todos los datos!
+            </div>
+            <div class="row text-center">
+                <div class="col-12 text-center" style="padding-bottom: 10px">
+                    <input type="file" name="file" class="form-control" accept=".jpg, .png, jpeg"
+                        (change)="selectImg($event)" required>
+                </div>
+                <div class="col-6 form-group">
+                    <input type="nombre" id="nombre" name="nombre" class="form-control"
+                        placeholder="Ingrese su nombre *" [(ngModel)]="disenio.nombresDisenador" required />
+                </div>
+                <div class="col-6 form-group">
+                    <input type="nombew" id="apellido" name="apellido" class="form-control"
+                        placeholder="Ingrese su apellido *" [(ngModel)]="disenio.apellidosDisenador" required />
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-6">
+                    <input type="email" id="email" name="email" class="form-control" placeholder="email *"
+                        [(ngModel)]="disenio.emailDisenador" required />
+                </div>
+                <div class="col-6">
+                    <input type="number" name="costo" id="costo" class="form-control" placeholder="valor del diseño *"
+                        [(ngModel)]="disenio.costo" required>
+                </div>
+            </div>
+            <input type="submit" class="btnRegister btn btn-success" value="Enviar Diseño" />
+        </form>
+    </div>
+</div>

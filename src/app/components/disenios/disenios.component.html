@@ -5,9 +5,6 @@
         <table class="resultados table table-striped">
             <tr>
                 <th>
-                    #
-                </th>
-                <th>
                     Fecha
                 </th>
                 <th>
@@ -31,15 +28,14 @@
                 <th>
                 </th>
             </tr>
-            <tr dir-paginate="row in disenios|filter: q|itemsPerPage:10">
-                <td>{{row.numero}}</td>
-                <td>{{row.fecha}}</td>
-                <td>{{row.email}}</td>
-                <td>{{row.nombres}}</td>
-                <td>{{row.nombreApellidos}}</td>
+            <tr *ngFor="let row of disenios">
+                <td>{{row.fechaCreacion}}</td>
+                <td>{{row.emailDisenador}}</td>
+                <td>{{row.nombresDisenador}}</td>
+                <td>{{row.apellidosDisenador}}</td>
                 <td>{{row.estado}}</td>
-                <td>{{row.valor}}</td>
-                <td class="row">
+                <td>{{row.costo}}</td>
+                <td>
                     <button type="button" class="btn btn-outline-primary mr-2" ng-click="abrir(row)">
                         <span class="glyphicon glyphicon-remove"></span>Abrir
                     </button>

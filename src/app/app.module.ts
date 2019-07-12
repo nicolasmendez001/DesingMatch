@@ -15,6 +15,7 @@ import { NewProjectComponent } from './components/new-project/new-project.compon
 import { LoginComponent } from './components/empresa/login/login.component';
 import { DiseniosComponent } from './components/disenios/disenios.component';
 import { ShowUrlComponent } from './components/show-url/show-url.component';
+import { AddDisenioComponent } from './components/add-disenio/add-disenio.component';
 
 const routes: Routes = [
   { path: '', component: InicioComponent },
@@ -30,7 +31,8 @@ const routes: Routes = [
     NewProjectComponent,
     LoginComponent,
     DiseniosComponent,
-    ShowUrlComponent
+    ShowUrlComponent,
+    AddDisenioComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
@@ -41,7 +43,7 @@ const routes: Routes = [
     HttpClientModule,
     RouterModule,
   ],
-  entryComponents: [RegisterComponent, LoginComponent, NewProjectComponent, DiseniosComponent, ShowUrlComponent],
+  entryComponents: [RegisterComponent, LoginComponent, NewProjectComponent, DiseniosComponent, ShowUrlComponent, AddDisenioComponent],
   providers: [{ provide: APP_BASE_HREF, useValue: '' }],
   bootstrap: [AppComponent],
   exports: [

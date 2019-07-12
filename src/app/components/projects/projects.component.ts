@@ -1,3 +1,4 @@
+import { AddDisenioComponent } from './../add-disenio/add-disenio.component';
 import { NewProjectComponent } from './../new-project/new-project.component';
 import { ProjectService } from '../../services/projects/project.service';
 import { Component, OnInit } from '@angular/core';
@@ -53,7 +54,9 @@ export class ProjectsComponent implements OnInit {
   diseniosLogin(proyecto: ModelProyecto) {
     console.log(proyecto.disenios);
 
-    const dialogRef = this.dialog.open(DiseniosComponent, { data: { proyecto } });
+    const dialogRef = this.dialog.open(DiseniosComponent, {
+      height: '500px',
+      data: proyecto.disenios});
     dialogRef.afterClosed().subscribe(res => {
       console.log(res);
     });
@@ -67,7 +70,8 @@ export class ProjectsComponent implements OnInit {
   }
 
   eliminar(id: number) {
-
+    console.log("Proyecto a eliminar ", id);
+    
     this.service.delete(this.empresa.id, id).subscribe(
       res => {
         location.reload();
@@ -87,5 +91,9 @@ export class ProjectsComponent implements OnInit {
 
   salir() {
     window.localStorage.clear();
+  }
+
+  sendDsenio(id: number){
+    this.dialog.open(AddDisenioComponent, {data: id});
   }
 }
