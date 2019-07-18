@@ -1,5 +1,5 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatDialogModule } from '@angular/material';
+import { MatDialogModule, MatPaginatorModule } from '@angular/material';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -16,6 +16,8 @@ import { LoginComponent } from './components/empresa/login/login.component';
 import { DiseniosComponent } from './components/disenios/disenios.component';
 import { ShowUrlComponent } from './components/show-url/show-url.component';
 import { AddDisenioComponent } from './components/add-disenio/add-disenio.component';
+import { ShowImgComponent } from './components/show-img/show-img.component';
+import { NgxPaginationModule } from "ngx-pagination";
 
 const routes: Routes = [
   { path: '', component: InicioComponent },
@@ -32,7 +34,8 @@ const routes: Routes = [
     LoginComponent,
     DiseniosComponent,
     ShowUrlComponent,
-    AddDisenioComponent
+    AddDisenioComponent,
+    ShowImgComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
@@ -42,8 +45,10 @@ const routes: Routes = [
     FormsModule,
     HttpClientModule,
     RouterModule,
+    MatPaginatorModule,
+    NgxPaginationModule
   ],
-  entryComponents: [RegisterComponent, LoginComponent, NewProjectComponent, DiseniosComponent, ShowUrlComponent, AddDisenioComponent],
+  entryComponents: [RegisterComponent, LoginComponent, NewProjectComponent, DiseniosComponent, ShowUrlComponent, AddDisenioComponent, ShowImgComponent],
   providers: [{ provide: APP_BASE_HREF, useValue: '' }],
   bootstrap: [AppComponent],
   exports: [

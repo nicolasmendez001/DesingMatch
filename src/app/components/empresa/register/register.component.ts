@@ -19,8 +19,8 @@ export class RegisterComponent {
 
   constructor(public dialog: MatDialog,
     public dialogRef: MatDialogRef<RegisterComponent>,
-   private server: RegisterEmpresaService,
-   ) {
+    private server: RegisterEmpresaService,
+  ) {
     this.empresa = new ModelEmpresa();
   }
 
@@ -37,27 +37,42 @@ export class RegisterComponent {
   }
 
   private saveEmpresa() {
-    this.empresa.url = this.nameEmpresa(this.empresa.nombre) + this.generateNumber();
-    this.server.saveEmpresa(this.empresa).subscribe(
-      // En corchetes guardar la sesion
-      res => { this.empresaGuardada(res)},
-      error => {
-        alert("Error al guardar: ");
-      }
+    this.validateName();
+
+    /*
+    );*/
+  }
+
+  private validateName() {
+    this.server.validateName(this.empresa.nombre).subscribe(
+      res => { this.SendEmpresa(res) },
+      error => { alert("Error validando nombre") }
     );
   }
 
-  private nameEmpresa(name: String): String{
+  private SendEmpresa(cantidadNombre: number) {
+    alert(cantidadNombre);
+    if (cantidadNombre === 0) {
+      this.empresa.url = this.nameEmpresa(this.empresa.nombre);
+    }else{
+      this.empresa.url = this.nameEmpresa(this.empresa.nombre) + (cantidadNombre + "");
+    }
+    
+    this.server.saveEmpresa(this.empresa).subscribe(
+      // En corchetes guardar la sesion
+      res => { this.empresaGuardada(res) },
+      error => {
+        alert("Error al guardar: ");
+      });
+  }
+
+  private nameEmpresa(name: String): String {
     return name.replace(/ /g, "");
   }
 
   private empresaGuardada(empresa: ModelEmpresa) {
     this.dialogRef.close();
-    this.dialog.open(ShowUrlComponent, {data:empresa.url});
-  }
-
-  private generateNumber() {
-    return Math.round(Math.random() * 100) + "";
+    this.dialog.open(ShowUrlComponent, { data: empresa.url });
   }
 
   errorPassword(): void {

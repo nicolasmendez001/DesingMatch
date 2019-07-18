@@ -1,6 +1,7 @@
 import { ModelDisenios } from 'src/app/models/ModelDisenios';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -25,5 +26,19 @@ export class DiseniosService {
    */
   public UpdateDisenio(disenio: ModelDisenios) {
     return this.http.put<ModelDisenios>('http://localhost:17129/backDesingMatch/web/disenio/update', disenio);
+  }
+
+  /**
+   * loadList
+   */
+  public loadList(idProyecto: number):Observable<ModelDisenios[]> {
+    return this.http.post<ModelDisenios[]>('http://localhost:17129/backDesingMatch/web/disenio/loadDisenios', idProyecto);
+  }
+
+  /**
+   * getImg
+   */
+  public getImg(path: String): Observable<any> {
+    return this.http.post<any>('http://localhost:17129/backDesingMatch/web/disenio/getImg', path);
   }
 }

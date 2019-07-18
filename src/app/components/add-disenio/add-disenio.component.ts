@@ -2,8 +2,7 @@ import { DiseniosService } from './../../services/disenios/disenios.service';
 import { ModelDisenios } from 'src/app/models/ModelDisenios';
 import { Component, OnInit, Inject } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { error } from '@angular/compiler/src/util';
-import { MAT_DIALOG_DATA } from '@angular/material';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 
 @Component({
   selector: 'app-add-disenio',
@@ -19,7 +18,7 @@ export class AddDisenioComponent implements OnInit {
   private idProyecto: number;
   private img: any;
 
-  constructor(private service: DiseniosService, @Inject(MAT_DIALOG_DATA) id) {
+  constructor(private service: DiseniosService, @Inject(MAT_DIALOG_DATA) id, public dialogRef: MatDialogRef<AddDisenioComponent>) {
     this.disenio = new ModelDisenios();
     this.idProyecto = id;
   }
@@ -74,12 +73,10 @@ export class AddDisenioComponent implements OnInit {
     
     alert("Hemos recibido tu diseño y lo estamos procesando para que sea publicado");
     this.sendImg(disenio.nombresDisenador.replace(/ /g, "") + disenio.id + "" + this.idProyecto);
-   // location.reload();
+   
   }
 
   sendImg(name: String) {
-    console.log(this.imgBase64);
-    
     this.service.senImg(this.imgBase64, name).subscribe(
       res => { this.changePath(res) },
       
@@ -93,16 +90,14 @@ export class AddDisenioComponent implements OnInit {
     console.log("Esto llega a editar ", res);
     this.disenio.rutaImagen = res[0];
     console.log("Diseño editado -> ", this.disenio);
-    
-
     this.service.UpdateDisenio(this.disenio).subscribe(
       res => {
-        alert("Path actualizado");
+        console.log("Path actualizado");
       },
       error => {
         alert("Error al cambiar el path");
       });
-        
+        this.dialogRef.close();
   }
 
   selectImg(event) {

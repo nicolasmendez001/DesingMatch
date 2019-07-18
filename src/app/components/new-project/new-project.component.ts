@@ -43,7 +43,7 @@ export class NewProjectComponent {
   }
 
   addProject() {
-    var empresa: ModelEmpresa = JSON.parse(window.localStorage.getItem('empresa'));
+    var empresa: ModelEmpresa = JSON.parse(window.sessionStorage.getItem('empresa'));
     if (this.existProject) {
       this.editProject();
     }else{

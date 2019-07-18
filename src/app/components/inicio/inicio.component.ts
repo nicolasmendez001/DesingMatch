@@ -12,6 +12,7 @@ export class InicioComponent implements OnInit {
   constructor(private dialog: MatDialog) { }
 
   ngOnInit() {
+    window.sessionStorage.clear();
   }
 
   openRegister(){

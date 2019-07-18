@@ -28,7 +28,7 @@
                 <th>
                 </th>
             </tr>
-            <tr *ngFor="let row of disenios">
+            <tr *ngFor="let row of disenios | paginate: {itemsPerPage: 5, currentPage: p}">
                 <td>{{row.fechaCreacion}}</td>
                 <td>{{row.emailDisenador}}</td>
                 <td>{{row.nombresDisenador}}</td>
@@ -36,12 +36,14 @@
                 <td>{{row.estado}}</td>
                 <td>{{row.costo}}</td>
                 <td>
-                    <button type="button" class="btn btn-outline-primary mr-2" ng-click="abrir(row)">
-                        <span class="glyphicon glyphicon-remove"></span>Abrir
+                    <button type="button" class="btn btn-outline-primary mr-2" (click)="abrir(row.rutaImagen)">
+                        <i class="far fa-image"></i>Abrir
                     </button>
                 </td>
             </tr>
         </table>
-        <div dir-pagination-controls></div>
+        <div class="text-center">
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+        </div>
         <br />
     </div>

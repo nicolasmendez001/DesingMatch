@@ -16,4 +16,8 @@ export class RegisterEmpresaService {
   public saveEmpresa(empresa: ModelEmpresa): Observable<ModelEmpresa> {
     return this.http.post<ModelEmpresa>("http://localhost:17129/backDesingMatch/web/empresa/registrarEmpresa", empresa);
   }
+
+  validateName(nombre: String) {
+    return this.http.post<number>('http://localhost:17129/backDesingMatch/web/empresa/validateName', nombre);
+  }
 }

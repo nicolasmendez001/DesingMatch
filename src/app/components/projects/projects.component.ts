@@ -39,7 +39,7 @@ export class ProjectsComponent implements OnInit {
   login() {
     const diallgRest = this.dialog.open(LoginComponent);
     diallgRest.afterClosed().subscribe(result => {
-      this.empresa = JSON.parse(window.localStorage.getItem('empresa'));
+      this.empresa = JSON.parse(window.sessionStorage.getItem('empresa'));
       console.log(this.empresa);
     });
   }
@@ -52,11 +52,11 @@ export class ProjectsComponent implements OnInit {
   }
 
   diseniosLogin(proyecto: ModelProyecto) {
-    console.log(proyecto.disenios);
+    console.log(proyecto);
 
     const dialogRef = this.dialog.open(DiseniosComponent, {
       height: '500px',
-      data: proyecto.disenios});
+      data: proyecto.idProyecto});
     dialogRef.afterClosed().subscribe(res => {
       console.log(res);
     });
@@ -70,8 +70,6 @@ export class ProjectsComponent implements OnInit {
   }
 
   eliminar(id: number) {
-    console.log("Proyecto a eliminar ", id);
-    
     this.service.delete(this.empresa.id, id).subscribe(
       res => {
         location.reload();
@@ -81,7 +79,7 @@ export class ProjectsComponent implements OnInit {
   }
 
   isLogin(): boolean {
-    this.empresa = JSON.parse(window.localStorage.getItem('empresa'));
+    this.empresa = JSON.parse(window.sessionStorage.getItem('empresa'));
     return this.empresa != null;
   }
 
@@ -90,7 +88,7 @@ export class ProjectsComponent implements OnInit {
   }
 
   salir() {
-    window.localStorage.clear();
+    window.sessionStorage.clear();
   }
 
   sendDsenio(id: number){

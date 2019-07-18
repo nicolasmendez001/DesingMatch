@@ -42,7 +42,7 @@ export class LoginComponent {
 
   private empresaLogueada(empresa: ModelEmpresa) {
     if (empresa != null) {
-      window.localStorage.setItem('empresa', JSON.stringify(empresa));
+      window.sessionStorage.setItem('empresa', JSON.stringify(empresa));
       this.dialogRef.close();
     } else {
       this.onIsError();

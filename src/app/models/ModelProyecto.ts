@@ -1,7 +1,7 @@
 import { ModelDisenios } from './ModelDisenios';
 
 export class ModelProyecto{
-    id?: number;
+    idProyecto?: number;
     nombre?: String;
     descripcion?: String;
     valor?: number;
