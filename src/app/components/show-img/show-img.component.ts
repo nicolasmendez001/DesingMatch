@@ -19,7 +19,7 @@ export class ShowImgComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.refD.updatePosition({ top: `80px`});
+    this.refD.updatePosition({ top: `70px`});
   }
 
 }

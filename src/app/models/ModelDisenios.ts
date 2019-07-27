@@ -5,6 +5,7 @@ export class ModelDisenios{
     nombresDisenador?: String;
     apellidosDisenador?: String;
     estado?: String;
-    rutaImagen?: String;
+    originalPath?: String;
+    editPath?: String;
     costo?: number;
 }

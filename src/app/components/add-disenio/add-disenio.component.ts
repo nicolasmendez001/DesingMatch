@@ -52,7 +52,7 @@ export class AddDisenioComponent implements OnInit {
   sendDisenio() {
     this.disenio.estado = "EN_PROCESO";
     this.disenio.fechaCreacion = this.getDate();
-    this.disenio.rutaImagen = "ruta";
+    this.disenio.originalPath = "ruta";
   //  console.log("Base --> ", this.imgBase64);
 
     console.log("Diseño --> ", this.disenio);
@@ -88,7 +88,7 @@ export class AddDisenioComponent implements OnInit {
 
   changePath(res){
     console.log("Esto llega a editar ", res);
-    this.disenio.rutaImagen = res[0];
+    this.disenio.originalPath = res[0];
     console.log("Diseño editado -> ", this.disenio);
     this.service.UpdateDisenio(this.disenio).subscribe(
       res => {

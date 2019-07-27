@@ -51,12 +51,12 @@ export class RegisterComponent {
   }
 
   private SendEmpresa(cantidadNombre: number) {
-    alert(cantidadNombre);
     if (cantidadNombre === 0) {
       this.empresa.url = this.nameEmpresa(this.empresa.nombre);
     }else{
       this.empresa.url = this.nameEmpresa(this.empresa.nombre) + (cantidadNombre + "");
     }
+    console.log("Envia empresa --> ", this.empresa);
     
     this.server.saveEmpresa(this.empresa).subscribe(
       // En corchetes guardar la sesion
@@ -71,6 +71,8 @@ export class RegisterComponent {
   }
 
   private empresaGuardada(empresa: ModelEmpresa) {
+    console.log("Entra al registrar :", empresa);
+    
     this.dialogRef.close();
     this.dialog.open(ShowUrlComponent, { data: empresa.url });
   }

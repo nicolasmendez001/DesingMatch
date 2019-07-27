@@ -1,0 +1,16 @@
+<div class="row">
+ 
+  <div class="col-12 text-center">
+      <h2>Diseños enviados</h2>
+      <hr>
+    <div class="mdb-lightbox" *ngFor="let item of listDisenios | paginate: {itemsPerPage: 1, currentPage: p}">
+      <figure class="">
+        <img alt="picture" [src]="item" class="img-fluid" width="600" height="400">
+      </figure>
+    </div>
+    <div class="text-center">
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
+
+  </div>
+</div>

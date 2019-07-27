@@ -1,3 +1,5 @@
+import { ModelDisenios } from 'src/app/models/ModelDisenios';
+import { DisengImgComponent } from './../diseng-img/diseng-img.component';
 import { AddDisenioComponent } from './../add-disenio/add-disenio.component';
 import { NewProjectComponent } from './../new-project/new-project.component';
 import { ProjectService } from '../../services/projects/project.service';
@@ -52,14 +54,16 @@ export class ProjectsComponent implements OnInit {
   }
 
   diseniosLogin(proyecto: ModelProyecto) {
-    console.log(proyecto);
-
     const dialogRef = this.dialog.open(DiseniosComponent, {
       height: '500px',
       data: proyecto.idProyecto});
     dialogRef.afterClosed().subscribe(res => {
       console.log(res);
     });
+  }
+
+  disenios(proyecto: ModelProyecto){
+    
   }
 
   editar(proyecto: ModelProyecto) {
@@ -81,6 +85,12 @@ export class ProjectsComponent implements OnInit {
   isLogin(): boolean {
     this.empresa = JSON.parse(window.sessionStorage.getItem('empresa'));
     return this.empresa != null;
+  }
+
+  showImg(idProject: number){
+    this.dialog.open(DisengImgComponent, {
+      height: '500px',
+      data: idProject});
   }
 
   editarInfo() {

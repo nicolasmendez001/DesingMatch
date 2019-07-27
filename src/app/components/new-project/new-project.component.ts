@@ -16,18 +16,18 @@ export class NewProjectComponent {
   public isError = false;
   public existProject = false;
 
-  constructor(public dialogRef: MatDialogRef<NewProjectComponent>, private service: ProjectService,  @Inject(MAT_DIALOG_DATA) proyecto) {
+  constructor(public dialogRef: MatDialogRef<NewProjectComponent>, private service: ProjectService, @Inject(MAT_DIALOG_DATA) proyecto) {
     if (proyecto != null) {
       this.existProject = true;
       this.proyecto = proyecto;
-    }else{
+    } else {
       this.proyecto = new ModelProyecto();
     }
     console.log(this.proyecto);
-    
-   }
 
-   onRegister(form: NgForm) {
+  }
+
+  onRegister(form: NgForm) {
     if (form.valid) {
       this.addProject();
     } else {
@@ -46,7 +46,7 @@ export class NewProjectComponent {
     var empresa: ModelEmpresa = JSON.parse(window.sessionStorage.getItem('empresa'));
     if (this.existProject) {
       this.editProject();
-    }else{
+    } else {
       this.saveProject(empresa.id);
     }
   }
@@ -60,9 +60,11 @@ export class NewProjectComponent {
     );
   }
 
-  private saveProject(id: number){
+  private saveProject(id: number) {
     this.service.saveProject(this.proyecto, id).subscribe(
-      res => { this.isSaved() },
+      res => {
+        this.isSaved();
+      },
       error => {
         alert("Error al guardar: " + error);
       }

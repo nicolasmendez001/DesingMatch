@@ -38,7 +38,14 @@ export class DiseniosService {
   /**
    * getImg
    */
-  public getImg(path: String): Observable<any> {
-    return this.http.post<any>('http://localhost:17129/backDesingMatch/web/disenio/getImg', path);
+  public getImg(path: String): Observable<String> {
+    return this.http.get<String>(`http://localhost:17129/backDesingMatch/web/disenio/getImg?path=${path}`);
+  }
+
+  /**
+   * loadPath
+   */
+  public loadPath(idProject: number):Observable<String[]> {
+    return this.http.get<String[]>(`http://localhost:17129/backDesingMatch/web/disenio/getPath/${idProject}`);
   }
 }

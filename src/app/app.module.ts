@@ -18,6 +18,7 @@ import { ShowUrlComponent } from './components/show-url/show-url.component';
 import { AddDisenioComponent } from './components/add-disenio/add-disenio.component';
 import { ShowImgComponent } from './components/show-img/show-img.component';
 import { NgxPaginationModule } from "ngx-pagination";
+import { DisengImgComponent } from './components/diseng-img/diseng-img.component';
 
 const routes: Routes = [
   { path: '', component: InicioComponent },
@@ -35,7 +36,8 @@ const routes: Routes = [
     DiseniosComponent,
     ShowUrlComponent,
     AddDisenioComponent,
-    ShowImgComponent
+    ShowImgComponent,
+    DisengImgComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
@@ -48,7 +50,7 @@ const routes: Routes = [
     MatPaginatorModule,
     NgxPaginationModule
   ],
-  entryComponents: [RegisterComponent, LoginComponent, NewProjectComponent, DiseniosComponent, ShowUrlComponent, AddDisenioComponent, ShowImgComponent],
+  entryComponents: [RegisterComponent, LoginComponent, NewProjectComponent, DiseniosComponent, ShowUrlComponent, AddDisenioComponent, ShowImgComponent, DisengImgComponent],
   providers: [{ provide: APP_BASE_HREF, useValue: '' }],
   bootstrap: [AppComponent],
   exports: [

@@ -90,7 +90,7 @@
                         </div>
                         <div class="row text-center" *ngIf="!isLogin()">
                             <div class="col-6">
-                                <button type="button" class="btn btn-primary" >
+                                <button type="button" class="btn btn-primary" (click)="showImg(item.idProyecto)">
                                     <i class="fas fa-eye"></i> ver diseños
                                 </button>
                             </div>

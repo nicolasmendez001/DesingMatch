@@ -14,6 +14,9 @@ export class ShowUrlComponent {
   constructor(public dialogRef: MatDialogRef<ShowUrlComponent>, @Inject(MAT_DIALOG_DATA) url) {
     this.path = `http://localhost:4200/${url}`;
     this.url = url;
+    console.log("Nuevo dialog  ", url);
+    
+    alert("LLega --> " + this.path);
    }
 
    close(){

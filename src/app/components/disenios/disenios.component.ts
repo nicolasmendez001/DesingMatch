@@ -20,6 +20,7 @@ export class DiseniosComponent implements OnInit {
     public dialog: MatDialog, public refD: MatDialogRef<DiseniosComponent>) {
     this.disenios = new Array<ModelDisenios>();
     this.loadDisenios(idProyecto);
+  
   }
 
   ngOnInit() {
@@ -33,14 +34,14 @@ export class DiseniosComponent implements OnInit {
       },
       error => {
         alert("Error al cargar los diseños")
-      });
+      });      
   }
 
   abrir(url: String) {
     this.service.getImg(url).subscribe(
       res => {
-        this.imagePath = this._sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,' + res[0]);
-        this.dialog.open(ShowImgComponent, { width: '900px', height: '650px', data: this.imagePath });
+        this.imagePath = this._sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,' + res);
+        this.dialog.open(ShowImgComponent, { width: '900px', height: '550px', data: this.imagePath });
       },
       error => {
         alert("error al cargar la imagen" + error)
